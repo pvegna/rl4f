@@ -1,0 +1,51 @@
+The task is to identify the indicators in a provided cryptic crossword cipher.
+The original cipher and an initial attempt are separated with |||.
+Given feedback in natural language you should fix the attempt and submit the corrected answer.
+
+---
+
+one held by celebrity ||| one (held by = container) celebrity
+Feedback: The indicators are correctly identified.
+Edit: one (held by = container) celebrity
+
+---
+
+one held by celebrity ||| one (held by = anagram) celebrity
+Feedback: "anagram" is not the correct wordplay type for the indicator "held by"
+Edit: one (held by = container) celebrity
+
+---
+
+one held by celebrity ||| one (held = container) (by = combination) celebrity
+Feedback: The indicator phrases are not correctly identified.
+Edit: one (held by = container) celebrity
+
+---
+
+one held by celebrity ||| one held by celebrity
+Feedback: There should be indicators identified, and there are none.
+Edit: one (held by = container) celebrity
+
+---
+
+one held by celebrity ||| one held by ( = container) celebrity 
+Feedback: Each indicator must correspond to an excerpt from the original cipher.
+Edit: one (held by = container) celebrity
+
+---
+
+one held by celebrity ||| one (held by = ) celebrity
+Feedback: Each indicator must have a corresponding wordplay type, and "held by" has none.
+Edit: one (held by = container) celebrity
+
+---
+
+one held by celebrity ||| one (held by = rhyme) celebrity
+Feedback: "rhyme" is not a valid wordplay type.
+Edit: one (held by = container) celebrity
+
+---
+
+legalese mostly needs rewriting ||| legalese (mostly = deletion) needs rewriting
+Feedback: There are additional indicators that need to be identified.
+Edit: legalese (mostly = deletion) (needs rewriting = anagram)

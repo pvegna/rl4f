@@ -1,0 +1,51 @@
+The task is to separate a provided cryptic crossword clue into a cipher and definition.
+The original clue and an initial attempt are separated with |||.
+Given feedback in natural language you should fix the attempt and submit the corrected answer.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian instrument.
+Feedback: The clue is correctly segmented.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: celebrity. definition = Indian instrument, one held by.
+Feedback: The definition is not correctly identified.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: one held. definition = Indian instrument by celebrity.
+Feedback: The cipher and definition must both be made up of sequential words.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian instrument, one.
+Feedback: Each word in the clue can only belong to either the cipher or definition, not both. The word "one" appears in both.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: Indian instrument, one held by celebrity. definition = .
+Feedback: The definition must not be empty.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian.
+Feedback: An important phrase, "instrument", is missing.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian instrument playing.
+Feedback: The word "playing" was erroneously added.
+Edit: cipher: one held by celebrity. definition = Indian instrument.
+
+---
+
+Indian instrument, one held by celebrity (5) ||| cipher: ones held by celebrity. definition = Indian instrument.
+Feedback: The word "one" was erroneously replaced with "ones".
+Edit: cipher: one held by celebrity. definition = Indian instrument.

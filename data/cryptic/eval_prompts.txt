@@ -1,0 +1,23 @@
+The task is to evaluate the annotated cryptic crossword clue.
+The clue and an initial attempt are separated with |||.
+Given feedback in natural language you should fix the attempt and submit the corrected answer.
+
+---
+
+I (held by = container) STAR = Indian instrument (5) ||| SITAR
+Feedback: The clue is correctly evaluated.
+Edit: SITAR
+
+---
+
+I (held by = container) STAR = Indian instrument (5) ||| STAIR
+Feedback: The wordplay evaluation is valid, but "STAIR" does not relate to "Indian instrument".
+Edit: SITAR
+
+---
+
+I (held by = container) STAR = Indian instrument (5) ||| STAR
+Feedback: All of the charades characters must be included in the final answer, and "I" is missing.
+Edit: SITAR
+
+---

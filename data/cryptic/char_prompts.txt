@@ -1,0 +1,27 @@
+The task is to identify the charades in a cryptic crossword cipher.
+The original cipher and an initial attempt are separated with |||.
+Given feedback in natural language you should fix the attempt and submit the corrected answer.
+
+---
+
+one (held by = container) celebrity ||| I (held by = container) STAR
+Feedback: The charades are correctly substituted.
+Edit: I (held by = container) STAR
+
+---
+
+one (held by = container) celebrity ||| I (held by = container) celebrity
+Feedback: There are additonal charades that must be substituted.
+Edit: I (held by = container) STAR
+
+---
+
+one (held by = container) celebrity ||| ONE (held by = container) STAR
+Feedback: The charade phrases are correctly identified, but the substitution "ONE" is incorrect.
+Edit: I (held by = container) STAR
+
+---
+
+one (held by = container) celebrity ||| I (HAD by = container) STAR
+Feedback: Indicator phrases should not be altered
+Edit: I (held by = container) STAR
