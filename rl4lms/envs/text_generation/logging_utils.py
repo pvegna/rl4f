@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import Dict, Any, List
 import os
 import json
-import jsonlines
+#import jsonlines
 import wandb
 import pandas as pd
 from transformers import AutoModel
@@ -105,8 +105,8 @@ class Tracker:
             "epoch": epoch,
             "metrics": metrics_dict
         }
-        with jsonlines.open(metric_file_per_split, "a") as writer:
-            writer.write(metrics_dict_)
+        with open(metric_file_per_split, "a") as writer:
+            writer.write(json.dumps(metrics_dict_) + '\n')
 
         # log to wandb
         if self._wandb_log:
@@ -122,8 +122,8 @@ class Tracker:
         logging.info(f"Rollout Info: {rollout_info}")
         rollout_info_file = os.path.join(
             self._run_path, "rollout_info.jsonl")
-        with jsonlines.open(rollout_info_file, mode="a") as writer:
-            writer.write(rollout_info)
+        with open(rollout_info_file, 'a') as writer:
+            writer.write(json.dumps(rollout_info) + '\n')
 
         # log to wandb
         if self._wandb_log:
@@ -133,8 +133,8 @@ class Tracker:
         logging.info(f"Training Info: {training_info}")
         training_info_file = os.path.join(
             self._run_path, "training_info.jsonl")
-        with jsonlines.open(training_info_file, mode="a") as writer:
-            writer.write(training_info)
+        with open(training_info_file, "a") as writer:
+            writer.write(json.dumps(training_info) + '\n')
 
         # log to wandb
         if self._wandb_log:
