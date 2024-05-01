@@ -111,11 +111,14 @@ class Alphabetize(TextGenPool):
     ):
         # Read the data
         if split == "train":
-            pth = f"/projectnb/llamagrp/feyzanb/feedback/data/alphabetize/train_{stage}.jsonl"
+            #pth = f"/projectnb/llamagrp/feyzanb/feedback/data/alphabetize/train_{stage}.jsonl"
+            pth = f"/scratch/network/pvegna/rl4f/data/Data/Alphabetization/train_{stage}.jsonl"
         elif split == "val":
-            pth = f"/projectnb/llamagrp/feyzanb/feedback/data/alphabetize/dev_{stage}.jsonl"
+            #pth = f"/projectnb/llamagrp/feyzanb/feedback/data/alphabetize/dev_{stage}.jsonl"
+            pth = f"/scratch/network/pvegna/rl4f/data/Data/Alphabetization/dev_{stage}.jsonl"
         elif split == "test":
-            pth = f"/projectnb/llamagrp/feyzanb/feedback/data/alphabetize/test_{stage}.jsonl"
+            #pth = f"/projectnb/llamagrp/feyzanb/feedback/data/alphabetize/test_{stage}.jsonl"
+            pth = f"/scratch/network/pvegna/rl4f/data/Data/Alphabetization/test_{stage}.jsonl"
         else:
             raise ValueError("Split not supported")
 
