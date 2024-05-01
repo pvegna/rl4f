@@ -19,6 +19,7 @@ import inspect
 import warnings
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple, Union
+from copy import deepcopy
 
 import torch
 import torch.distributed as dist
@@ -48,8 +49,7 @@ from transformers import (
     MaxLengthCriteria,
     MaxTimeCriteria,
     StoppingCriteria,
-    StoppingCriteriaList,
-    validate_stopping_criteria,
+    StoppingCriteriaList
 )
 from transformers.pytorch_utils import torch_int_div
 from transformers.utils import ModelOutput, logging
@@ -1646,8 +1646,13 @@ class GenerationMixinWithRawScores:
                 "`max_length` is deprecated in this function, use `stopping_criteria=StoppingCriteriaList([MaxLengthCriteria(max_length=max_length)])` instead.",
                 UserWarning,
             )
-            stopping_criteria = validate_stopping_criteria(
-                stopping_criteria, max_length)
+            stopping_max_length = stopping_criteria.max_length
+            new_stopping_criteria = deepcopy(stopping_criteria)
+            if stopping_max_length is not None and stopping_max_length != max_length:
+                warnings.warn("You set different `max_length` for stopping criteria and `max_length` parameter", UserWarning)
+            elif stopping_max_length is None:
+                new_stopping_criteria.append(MaxLengthCriteria(max_length=max_length))
+            stopping_criteria = new_stopping_criteria
         pad_token_id = pad_token_id if pad_token_id is not None else self.config.pad_token_id
         eos_token_id = eos_token_id if eos_token_id is not None else self.config.eos_token_id
         output_scores = output_scores if output_scores is not None else self.config.output_scores
