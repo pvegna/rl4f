@@ -51,7 +51,6 @@ from transformers import (
     StoppingCriteria,
     StoppingCriteriaList
 )
-from transformers.pytorch_utils import torch_int_div
 from transformers.utils import ModelOutput, logging
 import ipdb
 
@@ -2305,7 +2304,7 @@ class GenerationMixinWithRawScores:
                 next_token_scores, 2 * num_beams, dim=1, largest=True, sorted=True
             )
 
-            next_indices = torch_int_div(next_tokens, vocab_size)
+            next_indices = torch.div(next_tokens, vocab_size, rounding_mode='trunc')
             next_tokens = next_tokens % vocab_size
 
             # stateless
@@ -2658,7 +2657,7 @@ class GenerationMixinWithRawScores:
                 next_token_scores, descending=True, dim=1)
             next_tokens = torch.gather(next_tokens, -1, _indices)
 
-            next_indices = torch_int_div(next_tokens, vocab_size)
+            next_indices = torch.div(next_tokens, vocab_size, rounding_mode='trunc')
             next_tokens = next_tokens % vocab_size
 
             # stateless
@@ -3012,7 +3011,7 @@ class GenerationMixinWithRawScores:
                     next_token_scores, 2 * group_size, dim=1, largest=True, sorted=True
                 )
 
-                next_indices = torch_int_div(next_tokens, vocab_size)
+                next_indices = torch.div(next_tokens, vocab_size, rounding_mode='trunc')
                 next_tokens = next_tokens % vocab_size
 
                 # stateless
@@ -3042,7 +3041,7 @@ class GenerationMixinWithRawScores:
                 # (beam_idx % group_size) -> offset of idx inside the group
                 reordering_indices[batch_group_indices] = (
                     num_beams *
-                    torch_int_div(beam_idx, group_size) +
+                    torch.div(beam_idx, group_size, rounding_mode='trunc') +
                     group_start_idx + (beam_idx % group_size)
                 )
 
