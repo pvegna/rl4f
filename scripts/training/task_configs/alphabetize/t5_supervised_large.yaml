@@ -1,5 +1,5 @@
 tokenizer:
-  model_name: t5-large
+  model_name: "/scratch/network/pvegna/models/t5-large-tokenizer"
   padding_side: left
   truncation_side: right
   pad_token_as_eos_token: False 
@@ -21,7 +21,7 @@ alg:
     learning_rate: 0.00001
     save_total_limit: 1
   model_type: seq2seq
-  model_name: "t5-large"
+  model_name: "/scratch/network/pvegna/models/t5-large"
   generation_kwargs:
     num_beams: 5
     min_length: 5
