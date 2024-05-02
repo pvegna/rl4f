@@ -58,7 +58,8 @@ class EditMatchMetric(BaseMetric):
 
         # Check key is valid.
         if self.model_name != "code-davinci-002":
-            raise ValueError("You will be charged by OpenAI for this run.")
+            #raise ValueError("You will be charged by OpenAI for this run.")
+            print("You will be charged by OpenAI for this run.")
 
         # Load cache from cache_path.
         if os.path.exists(self.cache_path):
