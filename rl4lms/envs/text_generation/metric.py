@@ -163,7 +163,7 @@ class RougeMetric(BaseMetric):
 class BERTScoreMetric(BaseMetric):
     def __init__(self, language: str) -> None:
         super().__init__()
-        self._metric = load_metric("bertscore")
+        self._metric = load_metric("/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/bertscore/")
         self._language = language
         # since models are loaded heavily on cuda:0, use the last one to avoid memory
         self._last_gpu = f"cuda:{torch.cuda.device_count() - 1}"
