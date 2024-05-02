@@ -32,7 +32,7 @@ def evaluate_on_samples(model: PreTrainedModel,
                         ):
     all_prompt_texts, all_generated_texts, all_ref_texts, all_meta_infos = generate_on_samples(
         model, tokenizer, samples, batch_size, max_prompt_length, generation_kwargs)
-
+    print(metrics_config_dict)
     corpus_level_metrics, sample_predictions_dict = compute_metrics(
         metrics_config_dict, samples, all_prompt_texts, all_generated_texts, all_ref_texts, all_meta_infos, split_name, model)
 
