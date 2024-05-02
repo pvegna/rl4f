@@ -1,0 +1,3 @@
+mkdir -p /scratch/network/pvegna/rl4f/outputs/definition_output/rl4f_definition_sup/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0
+
+python /scratch/network/pvegna/rl4f/scripts/training/train_text_generation.py --base_path_to_store_results /scratch/network/pvegna/rl4f/outputs/definition_output/rl4f_definition_sup/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0/ --config_path /scratch/network/pvegna/rl4f/scripts/training/task_configs/definition/t5_supervised_large.yaml --project_name rl4f_definition_sup --experiment_name t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0 --entity_name pvegna --log_to_wandb
