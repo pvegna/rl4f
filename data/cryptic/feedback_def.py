@@ -2,7 +2,7 @@ import re
 import json
 import random
 
-with open('cryptic_train.json', 'r') as in_file:
+with open('cryptic_dev.json', 'r') as in_file:
     train = in_file.readlines()
 
 # possibilities: 
@@ -16,7 +16,7 @@ with open('cryptic_train.json', 'r') as in_file:
 # 7->non-sequential selection
 # 8->definition indicator words included
 
-with open('def_train.json', 'w') as def_file:
+with open('def_feedback_dev.json', 'w') as def_file:
     for n,line in enumerate(train):
         print(n)
         ex = json.loads(line)

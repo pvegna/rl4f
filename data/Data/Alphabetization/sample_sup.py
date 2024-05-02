@@ -1,6 +1,6 @@
 import random
 
-train_sample_size = 606 * 4 # size of cryptic train set * 4
+train_sample_size = 454 # size of cryptic train set * 4
 
 with open('train_sup_large.jsonl', 'r') as in_file:
     data = in_file.readlines()
@@ -10,7 +10,7 @@ with open('train_sup.jsonl', 'w') as out_file:
     for line in data: 
         out_file.write(line)
 
-test_sample_size = 76 * 4 # size of cryptic test set * 4
+test_sample_size = 51 # size of cryptic test set * 4
 
 with open('test_sup_large.jsonl', 'r') as in_file:
     data = in_file.readlines()
@@ -20,7 +20,7 @@ with open('test_sup.jsonl', 'w') as out_file:
     for line in data: 
         out_file.write(line)
 
-dev_sample_size = 75 * 4 # size of cryptic test set * 4
+dev_sample_size = 52 # size of cryptic test set * 4
 
 with open('dev_sup_large.jsonl', 'r') as in_file:
     data = in_file.readlines()
