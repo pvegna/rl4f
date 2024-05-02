@@ -16,7 +16,7 @@ reward_fn:
       cache_path: "/scratch/network/pvegna/rl4f/outputs/alphabetize_output/cache.json"
       save_path: ""
     tokenizer:
-      model_name: t5-large
+      model_name: "/scratch/network/pvegna/models/t5-large-tokenizer"
       padding_side: left
       truncation_side: right
       pad_token_as_eos_token: False
