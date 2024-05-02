@@ -192,7 +192,7 @@ class BERTScoreMetric(BaseMetric):
 class BLEUMetric(BaseMetric):
     def __init__(self) -> None:
         super().__init__()
-        self._metric = load_metric("bleu")
+        self._metric = load_metric("/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/bleu")
 
     def compute(
         self,
