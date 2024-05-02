@@ -142,6 +142,47 @@ class Alphabetize(TextGenPool):
                 break
         pool_instance = cls(samples)
         return pool_instance
+    
+class Definition(TextGenPool):
+    @classmethod
+    def prepare(
+        cls,
+        split: str,
+        stage: str,
+        prompt_prefix: str = "",
+        truncate_article: int = None,
+        max_size: int = None,
+    ):
+        # Read the data
+        if split == "train":
+            pth = f"/scratch/network/pvegna/rl4f/data/Data/Definition/train_{stage}.jsonl"
+        elif split == "val":
+            pth = f"/scratch/network/pvegna/rl4f/data/Data/Definition/dev_{stage}.jsonl"
+        elif split == "test":
+            pth = f"/scratch/network/pvegna/rl4f/data/Data/Definition/test_{stage}.jsonl"
+        else:
+            raise ValueError("Split not supported")
+
+        data = []
+        with open(pth, "r") as f:
+            for line in f:
+                data.append(json.loads(line))
+
+        samples = []
+        for ix, item in enumerate(data):
+            if type(item["summary"]) != list:
+                item["summary"] = [item["summary"]]
+            sample = Sample(
+                id=f"{split}_{ix}",
+                prompt_or_input_text=prompt_prefix + item["text"],
+                references=item["summary"],
+            )
+            samples.append(sample)
+
+            if max_size is not None and ix == (max_size - 1):
+                break
+        pool_instance = cls(samples)
+        return pool_instance
 
 
 class ToTTo(TextGenPool):
