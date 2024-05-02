@@ -183,6 +183,7 @@ class BERTScoreMetric(BaseMetric):
                 references=reference_texts,
                 lang=self._language,
                 device=self._last_gpu,
+                model_type="/scratch/network/pvegna/models/roberta-large/"
             )
             bert_scores = metric_results["f1"]
             corpus_level_score = np.mean(bert_scores)
