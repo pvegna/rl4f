@@ -1,0 +1,300 @@
+{
+    "os": "Linux-4.18.0-477.27.1.el8_8.x86_64-x86_64-with-glibc2.28",
+    "python": "3.11.9",
+    "heartbeatAt": "2024-05-02T11:27:46.424043",
+    "startedAt": "2024-05-02T11:27:45.989024",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--base_path_to_store_results",
+        "/scratch/network/pvegna/rl4f/outputs/alphabetize_output/rl4f_alphabetize_sup/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0_smaller/",
+        "--config_path",
+        "/scratch/network/pvegna/rl4f/scripts/training/task_configs/alphabetize/t5_supervised_large.yaml",
+        "--project_name",
+        "rl4f_alphabetize_sup",
+        "--experiment_name",
+        "t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0_smaller",
+        "--entity_name",
+        "pvegna",
+        "--log_to_wandb"
+    ],
+    "state": "running",
+    "program": "/scratch/network/pvegna/rl4f/scripts/training/train_text_generation.py",
+    "codePathLocal": "scripts/training/train_text_generation.py",
+    "codePath": "scripts/training/train_text_generation.py",
+    "git": {
+        "remote": "https://github.com/pvegna/rl4f.git",
+        "commit": "6648c478b096d4bde1e3126349b3a28e5d20bdbc"
+    },
+    "email": "pvegna@princeton.edu",
+    "root": "/scratch/network/pvegna/rl4f",
+    "host": "adroit-h11g2",
+    "username": "pvegna",
+    "executable": "/scratch/network/pvegna/conda/envs/nlp/bin/python",
+    "cpu_count": 48,
+    "cpu_count_logical": 48,
+    "cpu_freq": {
+        "current": 3.4999791666666664,
+        "min": 3500.0,
+        "max": 3500.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.499,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        },
+        {
+            "current": 3.5,
+            "min": 3500.0,
+            "max": 3500.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 158.08685302734375,
+            "used": 64.24559020996094
+        }
+    },
+    "gpu": "NVIDIA A100-PCIE-40GB",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA A100-PCIE-40GB",
+            "memory_total": 42949672960
+        }
+    ],
+    "memory": {
+        "total": 1006.8511505126953
+    }
+}
