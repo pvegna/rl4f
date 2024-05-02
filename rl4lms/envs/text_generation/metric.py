@@ -15,6 +15,7 @@ from rl4lms.data_pools.task_utils.totto.eval_utils import compute_parent, comput
 from tqdm import tqdm
 import copy
 import rouge
+import evaluate
 
 
 class BaseMetric:
@@ -192,7 +193,7 @@ class BERTScoreMetric(BaseMetric):
 class BLEUMetric(BaseMetric):
     def __init__(self) -> None:
         super().__init__()
-        self._metric = load_metric(path="/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/bleu/bleu.py")
+        self._metric = evaluate.load("/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/bleu/")
 
     def compute(
         self,
