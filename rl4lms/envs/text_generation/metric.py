@@ -129,7 +129,7 @@ class MeteorMetric(BaseMetric):
 class RougeMetric(BaseMetric):
     def __init__(self, use_single_ref: bool = True) -> None:
         super().__init__()
-        self._metric = load_metric("/scratch/network/pvegna/rl4f/envs/text_generation/rouge/metric.py", seed=0)
+        self._metric = load_metric("/scratch/network/pvegna/rl4f/envs/text_generation/rouge/", seed=0)
         self._use_single_ref = use_single_ref
 
     def compute(
