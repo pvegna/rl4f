@@ -22,16 +22,19 @@ def main(
     entity_name: str,
     log_to_wandb: bool,
 ):
+    print("loading config...")
     # load the config file
     with open(config_path, "r") as fp:
         config = yaml.safe_load(fp)
 
+    print("setting seed...")
     # set the seed
     seed = config["train_evaluation"]["seed"]
     torch.manual_seed(seed)
     np.random.seed(seed)
     random.seed(seed)
 
+    print("loading tracker...")
     # load tracker
     tracker = Tracker(
         base_path_to_store_results,
@@ -42,12 +45,14 @@ def main(
         log_to_wandb,
     )
 
+    print("loading metrics...")
     for metric in config["train_evaluation"]["metrics"]:
         if metric["id"] == "editmatch":
             metric["args"]["save_path"] = os.path.join(
                 base_path_to_store_results, project_name, experiment_name
             )
 
+    print("instantiating trainer...")
     # instantiate the trainer here
     if "supervised" in config["alg"]["id"]:
         trainer = SupervisedTrainer(

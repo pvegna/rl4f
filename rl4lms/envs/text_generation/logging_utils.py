@@ -30,6 +30,7 @@ class Tracker:
 
     def _init(self):
         # create a folder
+        print("creating output folders...")
         self._run_path = os.path.join(
             self._base_path_to_store_results,
             self._project_name,
@@ -41,10 +42,11 @@ class Tracker:
         with open(config_path, "w") as fp:
             json.dump(self._config, fp)
 
+        print("initializing logger...")
         # init logger
         log_path = os.path.join(self._run_path, "log.txt")
         logging.basicConfig(
-            level=logging.DEBUG,
+            level=logging.FATAL,
             format="%(asctime)s [%(levelname)s] %(message)s",
             handlers=[
                 logging.FileHandler(log_path),
@@ -52,14 +54,18 @@ class Tracker:
             ]
         )
 
+        print("initializing wandb...")
         # init wandb
         if self._wandb_log:
             self._wandb_run = wandb.init(
                 entity=self._entity_name,
                 project=self._project_name,
                 name=self._experiment_name,
-                config=self._config
+                config=self._config,
+                mode="offline"
             )
+        print("wandb initialized.")
+        
 
     def log_predictions(self, epoch: int,
                         split_name: str,
@@ -81,6 +87,7 @@ class Tracker:
         # we can create one table per split per epoch
         if self._wandb_log and len(predictions) > 0:
 
+
             def to_df(predictions):
                 columns = predictions[0].keys()
                 data_by_column = defaultdict(list)
@@ -94,6 +101,8 @@ class Tracker:
             predictions_table_at_epoch = wandb.Table(data=predictions_as_df)
             self._wandb_run.log({
                 f"{split_name}_predictions_at_epoch_{epoch}": predictions_table_at_epoch})
+        elif self._wandb_log:
+            print("no predictions found......................................")
 
     def log_metrics(self, epoch: int,
                     split_name: str,
