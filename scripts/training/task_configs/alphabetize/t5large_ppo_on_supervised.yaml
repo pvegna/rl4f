@@ -1,5 +1,5 @@
 tokenizer:
-  model_name: "/scratch/network/pvegna/models/t5-large-tokenizer"
+  model_name: t5-large
   padding_side: left
   truncation_side: right
   pad_token_as_eos_token: False
@@ -8,15 +8,15 @@ reward_fn:
   id: editmatch
   args:
     metric:
-      prompt_path: "/scratch/network/pvegna/rl4f/data/alphabetize/prompts.txt"
+      prompt_path: "/content/rl4f/data/alphabetize/prompts.txt"
       separator: "\n\n---\n\n"
       downstream_metric_name: inverse_levenshtein_diff_exact_match
       openai_key: openai_key
       gpt3_model_name: gpt-3.5-turbo-instruct
-      cache_path: "/scratch/network/pvegna/rl4f/outputs/alphabetize_output/cache.json"
+      cache_path: "/content/outputs/alphabetize_output/cache.json"
       save_path: ""
     tokenizer:
-      model_name: "/scratch/network/pvegna/models/t5-large-tokenizer"
+      model_name: t5-large
       padding_side: left
       truncation_side: right
       pad_token_as_eos_token: False
@@ -52,7 +52,7 @@ alg:
   policy:
     id: seq2seq_lm_actor_critic_policy
     args:
-      model_name: scratch/network/pvegna/rl4f/outputs/alphabetize_output/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0_epoch10_smaller/model
+      model_name: /content/rl4f/outputs/alphabetize_output/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0_epoch10_smaller/model
       apply_model_parallel: True
       prompt_truncation_side: "right"
       optimizer_kwargs:
@@ -77,12 +77,12 @@ train_evaluation:
     #   args: {}
     - id: editmatch
       args: 
-        prompt_path: "/scratch/network/pvegna/rl4f/data/alphabetize/prompts.txt"
+        prompt_path: "/content/rl4f/data/alphabetize/prompts.txt"
         separator: "\n\n---\n\n"
         downstream_metric_name: inverse_levenshtein_diff_exact_match
         openai_key: openai_key
         gpt3_model_name: gpt-3.5-turbo-instruct
-        cache_path: "/scratch/network/pvegna/rl4f/outputs/alphabetize_output/cache.json"
+        cache_path: "/content/rl4f/outputs/alphabetize_output/cache.json"
     #- id: bert_score
     #  args:
     #     language: en

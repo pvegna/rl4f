@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/scratch/network/pvegna/rl4f')
+sys.path.append('/content/rl4f')
 from argparse import ArgumentParser
 from rl4lms.envs.text_generation.logging_utils import Tracker
 from rl4lms.envs.text_generation.training_utils import (

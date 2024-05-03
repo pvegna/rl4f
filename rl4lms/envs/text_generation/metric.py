@@ -15,7 +15,6 @@ from rl4lms.data_pools.task_utils.totto.eval_utils import compute_parent, comput
 from tqdm import tqdm
 import copy
 import rouge
-import evaluate
 
 
 class BaseMetric:
@@ -130,7 +129,7 @@ class MeteorMetric(BaseMetric):
 class RougeMetric(BaseMetric):
     def __init__(self, use_single_ref: bool = True) -> None:
         super().__init__()
-        self._metric = load_metric("/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/rouge/", seed=0)
+        self._metric = load_metric("rouge", seed=0)
         self._use_single_ref = use_single_ref
 
     def compute(
@@ -163,7 +162,7 @@ class RougeMetric(BaseMetric):
 class BERTScoreMetric(BaseMetric):
     def __init__(self, language: str) -> None:
         super().__init__()
-        self._metric = load_metric("/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/bertscore/")
+        self._metric = load_metric("bertscore")
         self._language = language
         # since models are loaded heavily on cuda:0, use the last one to avoid memory
         self._last_gpu = f"cuda:{torch.cuda.device_count() - 1}"
@@ -183,8 +182,6 @@ class BERTScoreMetric(BaseMetric):
                 references=reference_texts,
                 lang=self._language,
                 device=self._last_gpu,
-                model_type="/scratch/network/pvegna/models/roberta-large/",
-                num_layers=17
             )
             bert_scores = metric_results["f1"]
             corpus_level_score = np.mean(bert_scores)
@@ -195,7 +192,7 @@ class BERTScoreMetric(BaseMetric):
 class BLEUMetric(BaseMetric):
     def __init__(self) -> None:
         super().__init__()
-        self._metric = load_metric("/scratch/network/pvegna/rl4f/rl4lms/envs/text_generation/bleu/")
+        self._metric = load_metric("bleu")
 
     def compute(
         self,
