@@ -2,7 +2,10 @@ import json
 import time
 from typing import Dict, List
 import pdb, sys
-import openai
+from openai import OpenAI
+
+keyfile = "openai_key.txt"
+client = OpenAI(api_key=[el for el in open(keyfile, "r")][0])
 from tqdm import tqdm
 
 
@@ -133,7 +136,6 @@ def get_generations_gpt3(
     top_p: float = 1.0,
 ) -> List[str]:
 
-    openai.api_key = [el for el in open(keyfile, "r")][0][:-1]
     gens = []
     chunks_ls = list(chunks(ls, batch_size))
     for chunk in tqdm(chunks_ls, total=len(chunks_ls)):
@@ -143,16 +145,14 @@ def get_generations_gpt3(
         retries = 1
         while not success and retries < 200:
             try:
-                completion = openai.Completion.create(
-                    engine=model_name,
-                    prompt=lst,
-                    max_tokens=max_length,
-                    temperature=temperature,
-                    n=n,
-                    top_p=top_p,
-                    stop=stop,
-                    frequency_penalty=penalty,
-                )
+                completion = client.completions.create(engine=model_name,
+                prompt=lst,
+                max_tokens=max_length,
+                temperature=temperature,
+                n=n,
+                top_p=top_p,
+                stop=stop,
+                frequency_penalty=penalty)
                 success = True
             except Exception as e:
                 wait = retries * 10
@@ -175,20 +175,19 @@ def get_generations_gpt3(
 def get_embeddings_gpt3(
     texts: List[str], keyfile: str, engine="text-similarity-davinci-001", batch_size=18
 ) -> List[List[float]]:
-    openai.api_key = [el for el in open(keyfile, "r")][0]
     chunks_ls = list(chunks(texts, batch_size))
     rr = []
     for chunk in tqdm(chunks_ls, total=len(chunks_ls)):
         # Replace newlines, which can negatively affect performance.
         chunk = [str(text).replace("\n", " ") for text in chunk]
         try:
-            results = openai.Embedding.create(input=chunk, engine=engine)["data"]
+            results = client.embeddings.create(input=chunk, engine=engine)["data"]
             results = [result["embedding"] for result in results]
             rr.extend(results)
         except Exception as e:
             print(e)
             time.sleep(60)
-            results = openai.Embedding.create(input=chunk, engine=engine)["data"]
+            results = client.embeddings.create(input=chunk, engine=engine)["data"]
             results = [result["embedding"] for result in results]
             rr.extend(results)
     return rr

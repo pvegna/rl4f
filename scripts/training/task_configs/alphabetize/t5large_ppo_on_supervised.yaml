@@ -13,7 +13,7 @@ reward_fn:
       downstream_metric_name: inverse_levenshtein_diff_exact_match
       openai_key: openai_key
       gpt3_model_name: gpt-3.5-turbo-instruct
-      cache_path: "/content/outputs/alphabetize_output/cache.json"
+      cache_path: "/content/rl4f/outputs/alphabetize_output/cache.json"
       save_path: ""
     tokenizer:
       model_name: t5-large
@@ -66,7 +66,7 @@ alg:
 train_evaluation:
   eval_batch_size: 48
   seed: 0
-  n_iters: 50
+  n_iters: 10 #50
   eval_every: 5
   save_every: 5
   metrics:

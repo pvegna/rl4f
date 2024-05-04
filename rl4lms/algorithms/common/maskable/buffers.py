@@ -9,7 +9,7 @@ from typing import Generator, NamedTuple, Optional, Union
 import numpy as np
 import torch
 import torch as th
-from gym import spaces
+from gymnasium import spaces
 from stable_baselines3.common.buffers import DictRolloutBuffer, RolloutBuffer
 from stable_baselines3.common.type_aliases import TensorDict
 from stable_baselines3.common.vec_env import VecNormalize
@@ -53,11 +53,11 @@ class MaskableRolloutBuffer(RolloutBuffer):
         super().__init__(*args, **kwargs)
 
     def reset(self) -> None:
-        if isinstance(self.action_space, spaces.Discrete):
+        if isinstance(self.action_space, spaces.discrete.Discrete):
             mask_dims = self.action_space.n
-        elif isinstance(self.action_space, spaces.MultiDiscrete):
+        elif isinstance(self.action_space, spaces.multi_discrete.MultiDiscrete):
             mask_dims = sum(self.action_space.nvec)
-        elif isinstance(self.action_space, spaces.MultiBinary):
+        elif isinstance(self.action_space, spaces.multi_binary.MultiBinary):
             mask_dims = 2 * self.action_space.n  # One mask per binary outcome
         else:
             raise ValueError(
