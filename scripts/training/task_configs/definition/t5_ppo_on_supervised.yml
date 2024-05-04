@@ -8,12 +8,12 @@ reward_fn:
   id: editmatch
   args:
     metric:
-      prompt_path: "/scratch/network/pvegna/rl4f/data/def_prompts.txt"
+      prompt_path: "/content/rl4f/data/cryptic/def_prompts.txt"
       separator: "\n\n---\n\n"
       downstream_metric_name: inverse_levenshtein_diff_exact_match
       openai_key: openai_key
       gpt3_model_name: gpt-3.5-turbo-instruct # code-davinci-002 shut down, this is openai's recommmended replacement
-      cache_path: "/scratch/network/pvegna/rl4f/outputs/definition_output/cache.json"
+      cache_path: "/content/rl4f/outputs/definition_output/cache.json"
       save_path: ""
     tokenizer:
       model_name: t5-large
@@ -53,7 +53,7 @@ alg:
   policy:
     id: seq2seq_lm_actor_critic_policy
     args:
-      model_name: /scratch/network/pvegna/rl4f/outputs/definition_output/alphabetize_sup_scale/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0/model
+      model_name: "/content/rl4f/outputs/definition_output/rl4f_definition_ppo/t5large_epochs10/model/"
       # what should this be
       apply_model_parallel: True
       prompt_truncation_side: "right"
@@ -68,7 +68,7 @@ alg:
 train_evaluation:
   eval_batch_size: 48
   seed: 0
-  n_iters: 50
+  n_iters: 10 #50
   eval_every: 5
   save_every: 5
   metrics:
@@ -79,12 +79,12 @@ train_evaluation:
     #   args: {}
     - id: editmatch
       args: 
-        prompt_path: "/scratch/network/pvegna/rl4f/data/def_prompts.txt"
+        prompt_path: "/content/rl4f/data/cryptic/def_prompts.txt"
         separator: "\n\n---\n\n"
         downstream_metric_name: inverse_levenshtein_diff_exact_match
         openai_key: openai_key
         gpt3_model_name: gpt-3.5-turbo-instruct
-        cache_path: "/scratch/network/pvegna/rl4f/outputs/definition_output/cache.json"
+        cache_path: "/content/rl4f/outputs/definition_output/cache.json"
     # - id: bert_score
     #   args:
     #     language: en
