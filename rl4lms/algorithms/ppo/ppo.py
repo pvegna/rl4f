@@ -117,7 +117,7 @@ class PPO(OnPolicyAlgorithm):
             policy_kwargs=policy_kwargs,
             verbose=verbose,
             device=device,
-            create_eval_env=create_eval_env,
+            #create_eval_env=create_eval_env,
             seed=seed,
             _init_setup_model=False,
             supported_action_spaces=(
@@ -348,10 +348,10 @@ class PPO(OnPolicyAlgorithm):
             total_timesteps=total_timesteps,
             callback=callback,
             log_interval=log_interval,
-            eval_env=eval_env,
-            eval_freq=eval_freq,
-            n_eval_episodes=n_eval_episodes,
+            #eval_env=eval_env,
+            #eval_freq=eval_freq,
+            #n_eval_episodes=n_eval_episodes,
             tb_log_name=tb_log_name,
-            eval_log_path=eval_log_path,
+            #eval_log_path=eval_log_path,
             reset_num_timesteps=reset_num_timesteps,
         )
