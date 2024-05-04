@@ -145,7 +145,7 @@ def get_generations_gpt3(
         retries = 1
         while not success and retries < 200:
             try:
-                completion = client.completions.create(engine=model_name,
+                completion = client.completions.create(model=model_name,
                 prompt=lst,
                 max_tokens=max_length,
                 temperature=temperature,
