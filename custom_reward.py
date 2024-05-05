@@ -212,9 +212,9 @@ class EditMatchMetric(BaseMetric):
         elif self.downstream_metric_name == "partition_diff":
             try:
                 # Get the part before "Feedback:"
-                clue_init_pred = [re.search("(.*)\|\|\|(.*)", input).group(1, 2).strip() for input in inputs]
-                clue = [cip[0] for cip in clue_init_pred]
-                init_pred = [cip[1] for cip in clue_init_pred]
+                clue_init_pred = [re.search("(.*)\|\|\|(.*)", input).group(1, 2) for input in inputs]
+                clue = [cip[0].strip() for cip in clue_init_pred]
+                init_pred = [cip[1].strip() for cip in clue_init_pred]
             except:
                 raise ValueError("Unknown input format, cannot extract initial prediction.")
             scores = self.downstream_metric(edit_pred, reference_texts, init_pred, clue)
@@ -438,17 +438,19 @@ def partition_diff(pred: List[str], ref: List[List[str]], init_pred: List[str], 
               keywords: List[str] = ["Definition:", "Cipher:"]) -> Dict[str, float]:
 
     search_str = "(.*)".join(keywords) + "(.*)"
-    pred_parts = [re.search(search_str, input).group().strip() for input in pred]
-    ref_parts = [re.search(search_str, input).group().strip() for input in ref]
-    init_pred_parts = [re.search(search_str, input).group().strip() for input in init_pred]
+    #print("pred: " + str(pred))
+    #print("ref: " + str(ref))
+    pred_parts = [re.match(search_str, input).group(1, 2) for input in pred]
+    ref_parts = [re.match(search_str, input[0]).group(1, 2) for input in ref]
+    init_pred_parts = [re.match(search_str, input).group(1, 2) for input in init_pred]
+  
+    pred_parts = [[p.strip().lower().translate(str.maketrans('', '', string.punctuation)) for p in ps] for ps in pred_parts]
+    ref_parts = [[r.strip().lower().translate(str.maketrans('', '', string.punctuation)) for r in rs] for rs in ref_parts]
+    init_pred_parts = [[ip.strip().lower().translate(str.maketrans('', '', string.punctuation)) for ip in ips] for ips in init_pred_parts]
+    clue = [c.lower().translate(str.maketrans('', '', string.punctuation)) for c in clue]
 
-    pred_parts = [[p.lower().translate(str.maketrans('', '', string.punctuation)) for p in ps] for ps in pred_parts]
-    ref_parts = [[r.lower().translate(str.maketrans('', '', string.punctuation)) for r in rs] for rs in ref_parts]
-    init_pred_parts = [[ip.lower().translate(str.maketrans('', '', string.punctuation)) for ip in ips] for ips in init_pred_parts]
-    clue = [c.strip().lower().translate(str.maketrans('', '', string.punctuation)) for c in clue]
-
-    res = [partition_metric(p, r, c) for p, r, c, in zip(pred, ref, clue)]
-    init_res = [partition_metric(p, r, c) for p, r, c, in zip(init_pred, ref, clue)]
+    res = [partition_metric(p, r, c) for p, r, c, in zip(pred_parts, ref_parts, clue)]
+    init_res = [partition_metric(p, r, c) for p, r, c, in zip(init_pred_parts, ref_parts, clue)]
     diffs = [p - i for p, i in zip(res, init_res)]
 
     scores = {

@@ -53,7 +53,7 @@ alg:
   policy:
     id: seq2seq_lm_actor_critic_policy
     args:
-      model_name: "/content/rl4f/outputs/definition_output/rl4f_definition_ppo/t5large_epochs10/model/"
+      model_name: "/content/rl4f/outputs/definition_output/rl4f_definition_sup/t5large_bs32_wd0.01_lr1e-5_beam5_min5_max_20_seed0_epochs10_smaller/model"
       # what should this be
       apply_model_parallel: True
       prompt_truncation_side: "right"

@@ -43,31 +43,44 @@ def levenshtein(s1, s2):
     return target  '''
 
 def partition_metric(pred, ref, clue):
-
+    '''print(pred)
+    print(ref)
+    print(clue)'''
     true_positives = 0
     false_negatives = 0
+    false_positives = 0
     insertions = 0
     num_ref = 0
     num_pred = 0
     for p, r in zip(pred, ref):
-        for rw in r.split():
+        for rw in r.split(' '):
             num_ref += 1
             if rw in p:
                 true_positives += 1
             else:
                 false_negatives += 1
-        for pw in p.split():
+        for pw in p.split(' '):
             num_pred += 1
-            if pw not in clue:
-                insertions += 1
+            if pw not in r:
+              false_positives += 1
+              if pw not in clue:
+                  insertions += 1
 
     complete = num_ref == num_pred and insertions == 0
     sequential = True
     for p in pred:
-        sequential = sequential and p in clue and p
+        sequential = sequential and (p in clue)
     exact_partition = 1 if sequential and insertions == 0 and false_negatives == 0 else 0
 
-    reward = true_positives - false_negatives - insertions + complete + sequential + exact_partition
+    '''print("tp: " + str(true_positives))
+    print("fn: " + str(false_negatives))
+    print("fo: " + str(false_positives))
+    print("ins: " + str(insertions))
+    print("cmplt: " + str(complete))
+    print("seq: " + str(sequential))
+    print("exact: " + str(exact_partition))
+    '''
+    reward = true_positives - false_negatives - false_positives - insertions + complete + sequential + exact_partition
     return reward
 
     
