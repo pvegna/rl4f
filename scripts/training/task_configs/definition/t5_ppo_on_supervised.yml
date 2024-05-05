@@ -10,7 +10,7 @@ reward_fn:
     metric:
       prompt_path: "/content/rl4f/data/cryptic/def_prompts.txt"
       separator: "\n\n---\n\n"
-      downstream_metric_name: inverse_levenshtein_diff_exact_match
+      downstream_metric_name: partition_diff
       openai_key: openai_key
       gpt3_model_name: gpt-3.5-turbo-instruct # code-davinci-002 shut down, this is openai's recommmended replacement
       cache_path: "/content/rl4f/outputs/definition_output/cache.json"

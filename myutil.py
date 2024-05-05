@@ -1,4 +1,5 @@
 import json
+import re
 import time
 from typing import Dict, List
 import pdb, sys
@@ -23,6 +24,53 @@ def levenshtein(s1, s2):
                 distances_.append(1 + min((distances[i1], distances[i1 + 1], distances_[-1])))
         distances = distances_
     return distances[-1]
+
+'''def partition_target(ref, clue):
+    c_words = clue.split()
+    target = [0]*(len(c_words) + 3)
+    print(target)
+    def_len = len(ref[0].split())
+    cipher_len = len(ref[1].split())
+    diff = len(c_words) - (def_len + cipher_len)
+    if re.match(ref[0]+"(.*)"+ref[1], clue):
+        target[def_len] = 1
+        target[def_len+diff+1] = 3
+        target[-1] = 2
+    elif re.match(ref[1]+"(.*)", clue):
+        target[cipher_len] = 2
+        target[cipher_len+diff+1] = 3
+        target[-1] = 1
+    return target  '''
+
+def partition_metric(pred, ref, clue):
+
+    true_positives = 0
+    false_negatives = 0
+    insertions = 0
+    num_ref = 0
+    num_pred = 0
+    for p, r in zip(pred, ref):
+        for rw in r.split():
+            num_ref += 1
+            if rw in p:
+                true_positives += 1
+            else:
+                false_negatives += 1
+        for pw in p.split():
+            num_pred += 1
+            if pw not in clue:
+                insertions += 1
+
+    complete = num_ref == num_pred and insertions == 0
+    sequential = True
+    for p in pred:
+        sequential = sequential and p in clue and p
+    exact_partition = 1 if sequential and insertions == 0 and false_negatives == 0 else 0
+
+    reward = true_positives - false_negatives - insertions + complete + sequential + exact_partition
+    return reward
+
+    
 
 
 class ForkedPdb(pdb.Pdb):

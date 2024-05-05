@@ -4,7 +4,7 @@ from rl4lms.envs.text_generation.metric import BaseMetric, RougeMetric
 from typing import Dict, Any, List
 from transformers import AutoTokenizer
 from transformers import PreTrainedModel
-from myutil import get_generations_gpt3, ForkedPdb, levenshtein
+from myutil import get_generations_gpt3, ForkedPdb, levenshtein, partition_metric
 from numpy import mean
 import json
 import os, re, string
@@ -49,7 +49,8 @@ class EditMatchMetric(BaseMetric):
             "loose_exact_match",
             "inverse_levenshtein",
             "inverse_levenshtein_diff",
-            "inverse_levenshtein_diff_exact_match"
+            "inverse_levenshtein_diff_exact_match",
+            "partition_diff"
             ]
 
         # Load prompt.
@@ -207,6 +208,16 @@ class EditMatchMetric(BaseMetric):
             else:
                 raise ValueError("Unknown input format, cannot extract initial prediction.")
             scores = self.downstream_metric(edit_pred, reference_texts, init_pred)
+
+        elif self.downstream_metric_name == "partition_diff":
+            try:
+                # Get the part before "Feedback:"
+                clue_init_pred = [re.search("(.*)\|\|\|(.*)", input).group(1, 2).strip() for input in inputs]
+                clue = [cip[0] for cip in clue_init_pred]
+                init_pred = [cip[1] for cip in clue_init_pred]
+            except:
+                raise ValueError("Unknown input format, cannot extract initial prediction.")
+            scores = self.downstream_metric(edit_pred, reference_texts, init_pred, clue)
 
         elif self.downstream_metric_name == "rougeC_diff_rouge_input":
             # TODO: These if/else statements are due to data formatting differences. Fixme.
@@ -423,6 +434,35 @@ def inverse_levenshtein_diff_exact_match(pred: List[str], ref: List[List[str]], 
     print("!!! scores_diff:\t", scores)
     return scores
 
+def partition_diff(pred: List[str], ref: List[List[str]], init_pred: List[str], clue: List[str],
+              keywords: List[str] = ["Definition:", "Cipher:"]) -> Dict[str, float]:
+
+    search_str = "(.*)".join(keywords) + "(.*)"
+    pred_parts = [re.search(search_str, input).group().strip() for input in pred]
+    ref_parts = [re.search(search_str, input).group().strip() for input in ref]
+    init_pred_parts = [re.search(search_str, input).group().strip() for input in init_pred]
+
+    pred_parts = [[p.lower().translate(str.maketrans('', '', string.punctuation)) for p in ps] for ps in pred_parts]
+    ref_parts = [[r.lower().translate(str.maketrans('', '', string.punctuation)) for r in rs] for rs in ref_parts]
+    init_pred_parts = [[ip.lower().translate(str.maketrans('', '', string.punctuation)) for ip in ips] for ips in init_pred_parts]
+    clue = [c.strip().lower().translate(str.maketrans('', '', string.punctuation)) for c in clue]
+
+    res = [partition_metric(p, r, c) for p, r, c, in zip(pred, ref, clue)]
+    init_res = [partition_metric(p, r, c) for p, r, c, in zip(init_pred, ref, clue)]
+    diffs = [p - i for p, i in zip(res, init_res)]
+
+    scores = {
+        "partition_diff": mean(diffs),
+        "partition_init": mean(init_res),
+        "partition": mean(res)
+    }
+
+    print("!!! scores_diff:\t", scores)
+    return scores
+
+
+
+
 
 def custom_metric_scripting_func(pred: str, gold: str):
     """
@@ -524,6 +564,7 @@ metric_map = {
     "inverse_levenshtein": inverse_levenshtein,
     "inverse_levenshtein_diff": inverse_levenshtein_diff,
     "inverse_levenshtein_diff_exact_match": inverse_levenshtein_diff_exact_match,
+    "partition_diff": partition_diff
 }
 
 

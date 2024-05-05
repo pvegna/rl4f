@@ -4,48 +4,48 @@ Given feedback in natural language you should fix the attempt and submit the cor
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian instrument.
+Indian instrument, one held by celebrity (5) ||| Definition: Indian instrument. Cipher: one held by celebrity.
 Feedback: The clue is correctly segmented.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: celebrity. definition = Indian instrument, one held by.
+Indian instrument, one held by celebrity (5) ||| Definition = Indian instrument, one held by. Cipher: celebrity.
 Feedback: The definition is not correctly identified.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: one held. definition = Indian instrument by celebrity.
+Indian instrument, one held by celebrity (5) ||| Definition: Indian instrument by celebrity. Cipher: one held.
 Feedback: The cipher and definition must both be made up of sequential words.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian instrument, one.
+Indian instrument, one held by celebrity (5) ||| Definition = Indian instrument, one. Cipher: one held by celebrity. 
 Feedback: Each word in the clue can only belong to either the cipher or definition, not both. The word "one" appears in both.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: Indian instrument, one held by celebrity. definition = .
+Indian instrument, one held by celebrity (5) ||| Definition = . Cipher: Indian instrument, one held by celebrity.
 Feedback: The definition must not be empty.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian.
+Indian instrument, one held by celebrity (5) ||| Definition: Indian. Cipher: one held by celebrity.
 Feedback: An important phrase, "instrument", is missing.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: one held by celebrity. definition = Indian instrument playing.
+Indian instrument, one held by celebrity (5) ||| Definition: Indian instrument playing. Cipher: one held by celebrity. 
 Feedback: The word "playing" was erroneously added.
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
 
 ---
 
-Indian instrument, one held by celebrity (5) ||| cipher: ones held by celebrity. definition = Indian instrument.
+Indian instrument, one held by celebrity (5) ||| Definition: Indian instrument. Cipher: ones held by celebrity.
 Feedback: The word "one" was erroneously replaced with "ones".
-Edit: cipher: one held by celebrity. definition = Indian instrument.
+Edit: Definition: Indian instrument. Cipher: one held by celebrity. 
